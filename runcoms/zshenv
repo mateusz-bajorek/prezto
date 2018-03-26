@@ -9,3 +9,39 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+######
+# OTHERS
+######
+
+export CF_SOURCES=/cf/code/
+alias b1='ssh b1-internal.currencyfair.com'
+alias b1apollo='ssh ec2-54-194-235-142.eu-west-1.compute.amazonaws.com'
+alias b1api='ssh ec2-54-229-141-203.eu-west-1.compute.amazonaws.com'
+alias b2='ssh b2-internal.currencyfair.com'
+alias b4='ssh b4-internal.currencyfair.com'
+alias b5='ssh b5-internal.currencyfair.com'
+alias b6='ssh b6-internal.currencyfair.com'
+alias b10='ssh b10-internal.currencyfair.com'
+alias jenkins='ssh jenkins-internal.currencyfair.com'
+alias prezto='cd ~/.zprezto/ ; git pull && git submodule update --init --recursive'
+alias b1-tunel-primary='ssh -L 9011:localhost:9011 b1-internal.currencyfair.com'
+alias b1-tunel-secondary='ssh -L 9012:localhost:9012 b1-internal.currencyfair.com'
+alias b2-tunel-primary='ssh -L 9011:localhost:9011 b2-internal.currencyfair.com'
+alias b2-tunel-secondary='ssh -L 9012:localhost:9012 b2-internal.currencyfair.com'
+alias b4-tunel-primary='ssh -L 9011:localhost:9011 b4-internal.currencyfair.com'
+alias b4-tunel-secondary='ssh -L 9012:localhost:9012 b4-internal.currencyfair.com'
+alias b5-tunel-primary='ssh -L 9011:localhost:9011 b5-internal.currencyfair.com'
+alias b5-tunel-secondary='ssh -L 9012:localhost:9012 b5-internal.currencyfair.com'
+alias b6-tunel-primary='ssh -L 9011:localhost:9011 b6-internal.currencyfair.com'
+alias b6-tunel-secondary='ssh -L 9012:localhost:9012 b6-internal.currencyfair.com'
+alias b10-tunel-primary='ssh -L 9011:localhost:9011 b10-internal.currencyfair.com'
+alias b10-tunel-secondary='ssh -L 9012:localhost:9012 b10-internal.currencyfair.com'
+alias thr='/cf/code/Ambrosia/cookbooks/cf_build/files/default/build_thrift.sh'
+alias luigi='ssh ubuntu@52.19.189.52'
+alias merc1='ssh -L 8080:localhost:8080 b1-internal.currencyfair.com'
+alias merc2='ssh -L 8080:localhost:9180 b1-internal.currencyfair.com'
+alias php56="brew unlink php70 && brew unlink php71 && brew unlink php72 && brew link php56 && brew services stop php70; brew services stop php71; brew services stop php72; brew services start php56"
+alias php70="brew unlink php56 && brew unlink php71 && brew unlink php72 && brew link php70 && brew services stop php56; brew services stop php71; brew services stop php72; brew services start php70"
+alias php71="brew unlink php56 && brew unlink php70 && brew unlink php72 && brew link php71 && brew services stop php56; brew services stop php70; brew services stop php72; brew services start php71"
+alias php72="brew unlink php56 && brew unlink php70 && brew unlink php71 && brew link php72 && brew services stop php56; brew services stop php70; brew services stop php71; brew services start php72"
