@@ -19,7 +19,7 @@ fi
 
 # Customize to your needs...
 
-export DEFAULT_USER="mateuszbajorek"
+export DEFAULT_USER="mateusz"
 POWERLEVEL9K_DIR_PATH_SEPARATOR=$'\uE0B1'
 POWERLEVEL9K_HOME_SUB_ICON=$'\uF015'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
@@ -45,16 +45,16 @@ POWERLEVEL9K_STATUS_VERBOSE=true
 # EXPORTS ETC
 ######
 
-export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
-export PATH="/usr/local/bin:/Users/mateuszbajorek/pear/bin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
-export HOMEBREW_GITHUB_API_TOKEN="b87e5df37e44bafb06aeeb7cd16d829d5921a153"
-export CATALINA_OPTS="$CATALINA_OPTS -Dcf.environment=development -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2"
-
-export RC_ARCHS=x86_64
-export ARCHFLAGS='-arch x86_64'
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+export PATH="/usr/local/opt/apr/bin:$PATH"
+export PATH="/usr/local/opt/apr-util/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 
 function precmd() {
   if command git rev-parse --git-dir > /dev/null 2>&1; then
@@ -70,20 +70,4 @@ eval $(thefuck --alias)
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
-# added by travis gem
-[ -f /Users/mateuszbajorek/.travis/travis.sh ] && source /Users/mateuszbajorek/.travis/travis.sh
-
 if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
-
-# tabtab source for jhipster package
-# uninstall by removing these lines or running `tabtab uninstall jhipster`
-[[ -f /usr/local/lib/node_modules/generator-jhipster/node_modules/tabtab/.completions/jhipster.zsh ]] && . /usr/local/lib/node_modules/generator-jhipster/node_modules/tabtab/.completions/jhipster.zsh
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
