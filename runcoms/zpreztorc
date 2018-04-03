@@ -30,6 +30,7 @@ zstyle ':prezto:load' pmodule \
   'environment' \
   'history' \
   'spectrum' \
+  'gnu-utility' \
   'utility' \
   'completion' \
   'git' \
