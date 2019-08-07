@@ -34,8 +34,8 @@ POWERLEVEL9K_TIME_BACKGROUND='255'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='245'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='black'
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable vcs)
+POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_STATUS_VERBOSE=true
@@ -43,10 +43,49 @@ POWERLEVEL9K_STATUS_VERBOSE=true
 ######
 # OTHERS
 ######
+# aliases
+alias tb="nc termbin.com 9999"
 
+# prezto
 alias prezto='cd ~/.zprezto/ ; git pull && git submodule update --init --recursive'
 
-function precmd() {
+# thefuck
+eval $(thefuck --alias)
+
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+eval "$(jenv enable-plugin export)"
+
+#nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
+# exports
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH=/usr/local/php5/bin:$PATH
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+export PATH="/usr/local/opt/apr/bin:$PATH"
+export PATH="/usr/local/opt/apr-util/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
+
+# brew not found suggestions
+if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+
+# read .bash_profile as well
+if [ -f ~/.bash_profile ] ; then
+    . ~/.bash_profile
+fi
+
+precmd() {
   if command git rev-parse --git-dir > /dev/null 2>&1; then
     tab_label=$(git rev-parse --show-toplevel | awk -F\/ '{print "[git] " $NF}')
   else
@@ -54,10 +93,7 @@ function precmd() {
   fi
   echo -ne "\e]1;${tab_label: -24}\a"
 }
-eval $(thefuck --alias)
 
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/mateusz/.sdkman"
+[[ -s "/Users/mateusz/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/mateusz/.sdkman/bin/sdkman-init.sh"
