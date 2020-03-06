@@ -47,7 +47,7 @@ POWERLEVEL9K_STATUS_VERBOSE=true
 alias tb="nc termbin.com 9999"
 
 # prezto
-alias prezto='cd ~/.zprezto/ ; git pull && git submodule update --init --recursive'
+alias prezto='cd ~/.zprezto/ ; git pull upstream master && git submodule update --init --recursive'
 
 # thefuck
 eval $(thefuck --alias)
@@ -81,7 +81,10 @@ export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/go/bin:$PATH"
-export PATH="${GOPATH//://bin:}/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+
+export GITHUB_ACCESS_TOKEN="<token>"
+export GITHUB_TOKEN="<token>"
 
 # brew not found suggestions
 if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
@@ -98,6 +101,14 @@ precmd() {
     tab_label=${PWD/${HOME}/\~}
   fi
   echo -ne "\e]1;${tab_label: -24}\a"
+}
+
+# jenkins
+open-doors () {
+  IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
+  curl -X POST 'jenkins.glofox.com/job/WhiteList-IP/build?delay=0sec' \
+    --user m_bajorek:<token> \
+    --data-urlencode json="{'parameter': [{'name':'IP_ADDRESS', 'value':'$IP'}, {'name':'IP_OWNER', 'value':'mateusz'}]}"
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
